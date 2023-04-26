@@ -13,6 +13,7 @@ public class enemyMovement : MonoBehaviour
     public Vector3 entityPosition = Vector3.zero;
     public Vector3 entityVelocity = Vector3.zero;
     public Vector3 desiredPosition;
+    public float minimumDistance;
     public float minSpeed;
     public float maxSpeed;
     public float turnRate;
@@ -41,16 +42,24 @@ public class enemyMovement : MonoBehaviour
         {
             entityPosition = self.transform.position;
             desiredPosition = target.transform.position;
-            desiredHeading = (desiredPosition - entityPosition).normalized;
+            desiredHeading = (desiredPosition - entityPosition);
             Move();
-            Debug.DrawLine(entityPosition, entityPosition + desiredPosition * 10, Color.red, Mathf.Infinity);
+            //Debug.DrawLine(entityPosition, entityPosition + desiredPosition * 10, Color.red, Mathf.Infinity);
         }
     }
 
     void Move()
     {
-        self.transform.Translate(desiredHeading*speed*Time.deltaTime);
-        self.transform.eulerAngles = desiredHeading;
+        
+        if(desiredHeading.magnitude >  minimumDistance)
+        {
+            self.transform.position += desiredHeading.normalized*speed*Time.deltaTime;
+        }
+
+        self.transform.rotation =  Quaternion.LookRotation(desiredHeading.normalized);;
+        
+
+       // self.transform.rotation *= Quaternion.Euler(0,180f,0);
         // if(Utils.ApproximatelyEqual(speed, desiredSpeed)) {
         //     ;
         // } else if(speed < desiredSpeed) {

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class enemyMovement
+public class enemyMovement : MonoBehaviour
 {
     public static enemyMovement inst;
     private void Awake()
@@ -12,6 +12,7 @@ public class enemyMovement
 
     public Vector3 entityPosition = Vector3.zero;
     public Vector3 entityVelocity = Vector3.zero;
+    public Vector3 desiredPosition;
     public float minSpeed;
     public float maxSpeed;
     public float turnRate;
@@ -25,6 +26,7 @@ public class enemyMovement
 
     //should be set to player or another entity
     public GameObject target = null;
+    public GameObject self;
 
     // Start is called before the first frame update
     void Start()
@@ -37,23 +39,26 @@ public class enemyMovement
     {
         if(target != null)
         {
-            desiredHeading = (target.transform.position - entityPosition).normalized;
+            entityPosition = self.transform.position;
+            desiredPosition = target.transform.position;
+            desiredHeading = (desiredPosition - entityPosition).normalized;
             Move();
-            Debug.DrawLine (entityPosition, entityPosition + target.transform.position * 10, Color.red, Mathf.Infinity);
+            Debug.DrawLine(entityPosition, entityPosition + desiredPosition * 10, Color.red, Mathf.Infinity);
         }
-
     }
 
     void Move()
     {
-        if(Utils.ApproximatelyEqual(speed, desiredSpeed)) {
-            ;
-        } else if(speed < desiredSpeed) {
-            speed = speed + acceleration * Time.deltaTime;
-        } else if (speed > desiredSpeed) {
-            speed = speed - acceleration * Time.deltaTime;
-        }
-        speed = Utils.Clamp(speed, minSpeed, maxSpeed);
+        self.transform.Translate(desiredHeading*speed*Time.deltaTime);
+        self.transform.eulerAngles = desiredHeading;
+        // if(Utils.ApproximatelyEqual(speed, desiredSpeed)) {
+        //     ;
+        // } else if(speed < desiredSpeed) {
+        //     speed = speed + acceleration * Time.deltaTime;
+        // } else if (speed > desiredSpeed) {
+        //     speed = speed - acceleration * Time.deltaTime;
+        // }
+        // speed = Utils.Clamp(speed, minSpeed, maxSpeed);
 
         //heading
         // if (Utils.ApproximatelyEqual(heading, desiredHeading)) {

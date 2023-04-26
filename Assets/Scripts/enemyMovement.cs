@@ -24,6 +24,7 @@ public class enemyMovement : MonoBehaviour
     public float acceleration;
 
     float direction;
+    public float attackPause;
 
     //should be set to player or another entity
     public GameObject target = null;
@@ -37,14 +38,19 @@ public class enemyMovement : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
-        if(target != null)
+    {   
+        attackPause -= Time.deltaTime;
+        entityPosition = self.transform.position;
+        desiredPosition = target.transform.position;
+        desiredHeading = (desiredPosition - entityPosition);
+        if(target != null && attackPause <= 0)
         {
-            entityPosition = self.transform.position;
-            desiredPosition = target.transform.position;
-            desiredHeading = (desiredPosition - entityPosition);
             Move();
             //Debug.DrawLine(entityPosition, entityPosition + desiredPosition * 10, Color.red, Mathf.Infinity);
+        }
+        if(desiredHeading.magnitude <=  minimumDistance)
+        {
+            attackPause = 3;
         }
     }
 

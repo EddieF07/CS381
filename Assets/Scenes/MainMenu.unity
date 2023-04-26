@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028305, g: 0.22571313, b: 0.3069213, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -159,8 +159,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 306}
-  m_SizeDelta: {x: -1523.5227, y: -782.7657}
+  m_AnchoredPosition: {x: 0.15930176, y: 306}
+  m_SizeDelta: {x: -1064.7373, y: -782.7657}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &234712831
 MonoBehaviour:
@@ -1316,7 +1316,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1796979954}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1575611082}
+        m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
+        m_MethodName: quitGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1796979954
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1435,3 +1447,62 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1999198204}
   m_CullTransparentMesh: 1
+--- !u!1001 &8051266101193253850
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 2
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3035720484723320605, guid: e0cdec239d4414bb39625885ee6227ae, type: 3}
+      propertyPath: m_Name
+      value: Cursor
+      objectReference: {fileID: 0}
+    - target: {fileID: 4856869143920653713, guid: e0cdec239d4414bb39625885ee6227ae, type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4856869143920653713, guid: e0cdec239d4414bb39625885ee6227ae, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1181.1963
+      objectReference: {fileID: 0}
+    - target: {fileID: 4856869143920653713, guid: e0cdec239d4414bb39625885ee6227ae, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 421.63135
+      objectReference: {fileID: 0}
+    - target: {fileID: 4856869143920653713, guid: e0cdec239d4414bb39625885ee6227ae, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -121.85986
+      objectReference: {fileID: 0}
+    - target: {fileID: 4856869143920653713, guid: e0cdec239d4414bb39625885ee6227ae, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4856869143920653713, guid: e0cdec239d4414bb39625885ee6227ae, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4856869143920653713, guid: e0cdec239d4414bb39625885ee6227ae, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4856869143920653713, guid: e0cdec239d4414bb39625885ee6227ae, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4856869143920653713, guid: e0cdec239d4414bb39625885ee6227ae, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4856869143920653713, guid: e0cdec239d4414bb39625885ee6227ae, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4856869143920653713, guid: e0cdec239d4414bb39625885ee6227ae, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_AddedGameObjects: []
+  m_SourcePrefab: {fileID: 100100000, guid: e0cdec239d4414bb39625885ee6227ae, type: 3}

@@ -12,6 +12,18 @@ public class CharacterControl : MonoBehaviour
     public int health = 50;
     public int damage = 100;
     public int stamina;
+    public double iFrames;
+    private Vector3 characterVelocity;
+    public Vector3 characterAcceleration;
+    public GameObject groundedCheck;
+
+    //state booleans
+    private bool isInvuln;
+    private bool staminaRegen;
+
+    //state timers
+    private double invulnTimer;
+    private double staminaTimer;
 
     public BarScript healthBar;
     public BarScript staminaBar;
@@ -39,6 +51,9 @@ public class CharacterControl : MonoBehaviour
             character.transform.position += speed * Time.deltaTime * -Camera.main.transform.right;
         if(Input.GetKey(KeyCode.D))
             character.transform.position += speed * Time.deltaTime * Camera.main.transform.right;
+        if(Input.GetKeyDown(KeyCode.Space) && isGrounded())
+            characterVelocity.y += characterAcceleration.y*1.5f;
+        
         if(Input.GetMouseButtonDown(0))
         {
             //Play animation
@@ -46,5 +61,39 @@ public class CharacterControl : MonoBehaviour
         }
         if(Input.GetMouseButtonUp(0))
             canAttack = false;
+
+        physics();
+        updateInvuln();
+    }
+
+    bool isGrounded()
+    {
+        return Physics.CheckSphere(groundedCheck.transform.position, .01f);
+    } 
+
+    void physics()
+    {
+        //simulates gravity
+
+        //jump
+        if(!isGrounded())
+        {
+            characterVelocity.y -= characterAcceleration.y*Time.deltaTime;
+        }
+        else if(characterVelocity.y < 0)
+        {
+            characterVelocity.y = 0;
+        }
+
+        character.transform.position += characterVelocity*Time.deltaTime;
+    }
+
+    void updateInvuln()
+    {
+        if(invulnTimer <= 0)
+        {
+            isInvuln = false;
+        }
+        invulnTimer -= Time.deltaTime;
     }
 }

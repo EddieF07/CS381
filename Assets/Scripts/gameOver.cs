@@ -16,6 +16,6 @@ public class gameOver : MonoBehaviour
     {
         yield return new WaitForSeconds(timerEndScene);
 
-        SceneManager.LoadScene(4);
+        SceneManager.LoadScene(5);
     }
 }

@@ -29,6 +29,7 @@ public class MainMenu : MonoBehaviour
         DontDestroyOnLoad(audioObject);
         audioS.Play();
 
+        SceneManager.LoadScene(4);
     }
     public void gameStart()
     {

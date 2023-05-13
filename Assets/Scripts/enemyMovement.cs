@@ -13,6 +13,7 @@ public class enemyMovement : MonoBehaviour
     public Vector3 entityPosition = Vector3.zero;
     public Vector3 entityVelocity = Vector3.zero;
     public Vector3 desiredPosition;
+    private float currentDistance;
     public float minimumDistance;
     public float minSpeed;
     public float maxSpeed;
@@ -39,6 +40,7 @@ public class enemyMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {   
+        currentDistance = desiredHeading.magnitude;
         attackPause -= Time.deltaTime;
         entityPosition = self.transform.position;
         desiredPosition = target.transform.position;
@@ -52,12 +54,19 @@ public class enemyMovement : MonoBehaviour
         {
             attackPause = 3;
         }
+
+
+    }
+
+    float getDistance()
+    {
+        return currentDistance;
     }
 
     void Move()
     {
         
-        if(desiredHeading.magnitude >  minimumDistance)
+        if(currentDistance >  minimumDistance)
         {
             self.transform.position += desiredHeading.normalized*speed*Time.deltaTime;
         }

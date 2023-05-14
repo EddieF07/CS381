@@ -16,6 +16,8 @@ public class CharacterControl : MonoBehaviour
     private Vector3 characterVelocity;
     public Vector3 characterAcceleration;
     public GameObject groundedCheck;
+    public Collider swordHitBox;
+    public Collider playerHurtBox;
 
     //state booleans
     private bool isInvuln;

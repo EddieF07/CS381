@@ -24,6 +24,10 @@ public class enemyMovement : MonoBehaviour
     Vector3 desiredHeading; //degrees
     public float acceleration;
 
+    //there is a rng function that will change current attack to be between 0 to numAttacks, changeAttack()
+    private int currentAttack;
+    private int numAttacks;
+
     float direction;
     public float attackPause;
 
@@ -34,7 +38,7 @@ public class enemyMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        changeAttack();
     }
 
     // Update is called once per frame
@@ -56,6 +60,11 @@ public class enemyMovement : MonoBehaviour
         }
 
 
+    }
+
+    void changeAttack()
+    {
+        currentAttack = Random.Range(0,numAttacks);
     }
 
     float getDistance()

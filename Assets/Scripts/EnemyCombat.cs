@@ -8,6 +8,7 @@ public class EnemyCombat : MonoBehaviour
 
     public int healthBar;
     public GameObject boss;
+    public Collider enemyHurtBox;
 
     void Start()
     {

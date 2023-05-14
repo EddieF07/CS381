@@ -24,6 +24,9 @@ public class enemyMovement : MonoBehaviour
     Vector3 desiredHeading; //degrees
     public float acceleration;
 
+    public float hp;
+    public gameOver winCon;
+
     //there is a rng function that will change current attack to be between 0 to numAttacks, changeAttack()
     private int currentAttack;
     private int numAttacks;
@@ -34,10 +37,13 @@ public class enemyMovement : MonoBehaviour
     //should be set to player or another entity
     public GameObject target = null;
     public GameObject self;
+     
+
 
     // Start is called before the first frame update
     void Start()
     {
+        hp = 200;
         changeAttack();
     }
 
@@ -59,6 +65,10 @@ public class enemyMovement : MonoBehaviour
             attackPause = 3;
         }
 
+        if(hp <= 0)
+        {
+            winCon.nextScene(5);
+        }
 
     }
 
@@ -102,5 +112,14 @@ public class enemyMovement : MonoBehaviour
         //     heading -= turnRate * Time.deltaTime;
         // }
         // heading = Utils.Degrees360(heading);
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        if(collision.gameObject.GetComponent<CharacterControl>().attackStatus())
+        {
+            hp -= collision.gameObject.GetComponent<CharacterControl>().damage;
+            Debug.Log(hp);
+        }
     }
 }

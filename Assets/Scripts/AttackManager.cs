@@ -19,11 +19,11 @@ public class AttackManager : MonoBehaviour
 
     private void OnTriggerEnter(Collider collision)
     {
-        if(collision.gameObject.tag == "Boss")
-        {
-            collision.gameObject.GetComponent<EnemyCombat>().healthBar -= character.GetComponent<CharacterControl>().damage;
-            Debug.Log(collision.gameObject.GetComponent<EnemyCombat>().healthBar);
-        }
+        //if(collision.gameObject.tag == "Boss")
+        //{
+        //    collision.gameObject.GetComponent<EnemyCombat>().healthBar -= character.GetComponent<CharacterControl>().damage;
+        //    Debug.Log(collision.gameObject.GetComponent<EnemyCombat>().healthBar);
+        //}
         
     }
 }

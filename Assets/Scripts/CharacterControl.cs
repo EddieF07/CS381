@@ -10,7 +10,7 @@ public class CharacterControl : MonoBehaviour
     public int maxHealth = 100;
     public int maxStamina = 100;
     public int health = 50;
-    public int damage = 100;
+    public float damage;
     public int stamina;
     public double iFrames;
     private Vector3 characterVelocity;
@@ -18,6 +18,7 @@ public class CharacterControl : MonoBehaviour
     public GameObject groundedCheck;
     public Collider swordHitBox;
     public Collider playerHurtBox;
+    public CrusaderAnimation crusaderAnimator;
 
     //state booleans
     private bool isInvuln;
@@ -34,8 +35,10 @@ public class CharacterControl : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        damage = 20.0f;
         healthBar.setMax(maxHealth);
         staminaBar.setMax(maxStamina);
+        
     }
 
     // Update is called once per frame
@@ -45,16 +48,19 @@ public class CharacterControl : MonoBehaviour
         staminaBar.updateBar(stamina);
 
         //weapon.transform.position = new Vector3(0,0.05549997f,0.872f);
-        if(Input.GetKey(KeyCode.W))
-            character.transform.position += speed * Time.deltaTime * Camera.main.transform.forward;
-        if(Input.GetKey(KeyCode.S))
-            character.transform.position += speed * Time.deltaTime * -Camera.main.transform.forward;
-        if(Input.GetKey(KeyCode.A))
-            character.transform.position += speed * Time.deltaTime * -Camera.main.transform.right;
-        if(Input.GetKey(KeyCode.D))
-            character.transform.position += speed * Time.deltaTime * Camera.main.transform.right;
-        if(Input.GetKeyDown(KeyCode.Space) && isGrounded())
-            characterVelocity.y += characterAcceleration.y*1.5f;
+        if(!attackStatus())
+        {
+            if(Input.GetKey(KeyCode.W))
+                character.transform.position += speed * Time.deltaTime * Camera.main.transform.forward;
+            if(Input.GetKey(KeyCode.S))
+                character.transform.position += speed * Time.deltaTime * -Camera.main.transform.forward;
+            if(Input.GetKey(KeyCode.A))
+                character.transform.position += speed * Time.deltaTime * -Camera.main.transform.right;
+            if(Input.GetKey(KeyCode.D))
+                character.transform.position += speed * Time.deltaTime * Camera.main.transform.right;
+            if(Input.GetKeyDown(KeyCode.Space) && isGrounded())
+                characterVelocity.y += characterAcceleration.y*1.5f;
+        }
         
         if(Input.GetMouseButtonDown(0))
         {
@@ -97,5 +103,10 @@ public class CharacterControl : MonoBehaviour
             isInvuln = false;
         }
         invulnTimer -= Time.deltaTime;
+    }
+
+    public bool attackStatus()
+    {
+        return crusaderAnimator.getAttack();
     }
 }

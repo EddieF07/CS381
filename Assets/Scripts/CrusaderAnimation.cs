@@ -23,7 +23,6 @@ public class CrusaderAnimation : MonoBehaviour
         }
         if(Input.GetMouseButtonDown(0) && canMove)
         {
-            Debug.Log(Input.GetMouseButtonDown(0));
             animator.SetBool("IsAttacking",true);
             canMove = false;
             StartCoroutine("attackAnimation");
@@ -62,9 +61,13 @@ public class CrusaderAnimation : MonoBehaviour
 
     IEnumerator attackAnimation()
     {   
-        
-        yield return new WaitUntil(() => animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1.0f);
+        yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length-1.5f);
         canMove = true;
-        animator.SetBool("IsAttacking",false);
+        animator.SetBool("IsAttacking",false);  
+    }
+
+    public bool getAttack()
+    {
+        return animator.GetBool("IsAttacking");
     }
 }

@@ -25,6 +25,7 @@ public class enemyMovement : MonoBehaviour
     public float acceleration;
     public EnemyAnimation animator;
     private int aiMovement;
+    public Rigidbody entityRigidBody;
 
     public float hp;
     public gameOver winCon;
@@ -45,7 +46,6 @@ public class enemyMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        hp = 200;
         changeAttack();
     }
 
@@ -57,6 +57,16 @@ public class enemyMovement : MonoBehaviour
         entityPosition = self.transform.position;
         desiredPosition = target.transform.position;
         desiredHeading = (desiredPosition - entityPosition);
+
+        if(currentDistance <.4f)
+        {
+            entityRigidBody.isKinematic = true;
+        }
+        else
+        {
+            entityRigidBody.isKinematic = false;
+        }
+
         
         aiMovement = Random.Range(0,3);
 
@@ -89,12 +99,12 @@ public class enemyMovement : MonoBehaviour
 
     }
 
-    void changeAttack()
+    public void changeAttack()
     {
         currentAttack = Random.Range(0,numAttacks);
     }
 
-    float getDistance()
+    public float getDistance()
     {
         return currentDistance;
     }
@@ -133,10 +143,14 @@ public class enemyMovement : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.GetComponent<CharacterControl>().attackStatus())
+        Debug.Log(collision.gameObject.name);
+        if(collision.gameObject.name == "crusader")
         {
-            hp -= collision.gameObject.GetComponent<CharacterControl>().damage;
-            Debug.Log(hp);
+            if(collision.gameObject.GetComponent<CharacterControl>().attackStatus())
+            {
+                hp -= collision.gameObject.GetComponent<CharacterControl>().damage;
+                Debug.Log(hp);
+            }
         }
     }
 

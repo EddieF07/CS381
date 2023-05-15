@@ -10,9 +10,9 @@ public class CharacterControl : MonoBehaviour
     public bool canAttack;
     public int maxHealth = 100;
     public int maxStamina = 100;
-    public float health = 50;
+    public float health = 100;
     public float damage;
-    public int stamina;
+    public float stamina;
     public double iFrames;
     private Vector3 characterVelocity;
     public Collider swordHitBox;
@@ -34,7 +34,7 @@ public class CharacterControl : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        damage = 20.0f;
+        damage = 15.0f;
         healthBar.setMax(maxHealth);
         staminaBar.setMax(maxStamina);
         
@@ -44,9 +44,10 @@ public class CharacterControl : MonoBehaviour
     void Update()
     {
         healthBar.updateBar((int)health);
-        staminaBar.updateBar(stamina);
-
+        staminaBar.updateBar((int)(stamina));
+        stamina += 5 * Time.deltaTime;
         //weapon.transform.position = new Vector3(0,0.05549997f,0.872f);
+
         if(!attackStatus())
         {
             Vector3 inputTranslate = new Vector3(0,0,0);
@@ -64,17 +65,18 @@ public class CharacterControl : MonoBehaviour
             characterRb.MovePosition(transform.position + Time.deltaTime * inputTranslate.normalized * speed);
         }
 
-        if(Input.GetMouseButtonDown(0))
-        {
-            //Play animation
-            canAttack = true;
-        }
-        if(Input.GetMouseButtonUp(0))
-            canAttack = false;
-
         //physics();
         updateInvuln();
         characterClamp();
+        staminaClamp();
+    }
+
+    private void staminaClamp()
+    {
+        if(stamina <0)
+            stamina = 0;
+        else if(stamina > maxStamina)
+            stamina = maxStamina;
     }
 
     void physics()
@@ -110,12 +112,14 @@ public class CharacterControl : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
+        //Debug.Log(collision.gameObject.name);
         //need to change to enemy script to get damage
-        // if(collision.GameObject.getComponenet<enemyMovement>())
-        // {
-        //     health -= collision.GameObject.getComponenet<enemyMovement>().attackType();
-        //     Debug.Log(health);
-        // }
+        if(collision.gameObject.tag == "Boss" && !isInvuln)
+        {
+            invulnTimer = 2;
+            isInvuln = true;
+            health -= collision.gameObject.GetComponent<enemyMovement>().attackType();
+        }
     }
 
     void characterClamp()

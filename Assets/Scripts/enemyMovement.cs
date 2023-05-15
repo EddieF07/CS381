@@ -33,6 +33,7 @@ public class enemyMovement : MonoBehaviour
 
     public float hp;
     public gameControl winCon;
+    public BarScript healthBar;
 
     //there is a rng function that will change current attack to be between 0 to numAttacks, changeAttack()
     private int currentAttack;
@@ -53,11 +54,13 @@ public class enemyMovement : MonoBehaviour
         winCon = GameObject.Find("GameControl").GetComponent<gameControl>();
         changeAttack();
         death = false;
+        healthBar.setMax((int)hp);
     }
 
     // Update is called once per frame
     void Update()
     {   
+        healthBar.updateBar((int)hp);
         currentDistance = desiredHeading.magnitude;
         attackPause -= Time.deltaTime;
         entityPosition = self.transform.position;
@@ -134,7 +137,7 @@ public class enemyMovement : MonoBehaviour
             self.transform.position += desiredHeading.normalized*speed*Time.deltaTime;
         }
 
-        self.transform.rotation =  Quaternion.LookRotation(desiredHeading.normalized);;
+        self.transform.rotation =  Quaternion.LookRotation(desiredHeading.normalized);
         
 
        // self.transform.rotation *= Quaternion.Euler(0,180f,0);

@@ -72,8 +72,8 @@ public class CrusaderAnimation : MonoBehaviour
         animator.SetBool("IsAttacking",false);  
         if(enemy.getDistance() < 2f)
         {
-            enemy.hp -= character.damage;
-            Debug.Log(enemy.hp);
+            //enemy.hp -= character.damage;
+            //Debug.Log(enemy.hp);
         }
     }
 

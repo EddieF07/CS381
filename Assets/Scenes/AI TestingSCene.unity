@@ -1580,7 +1580,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd652d25dbbff483197c719b0b4ff607, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timerEndScene: 10
+  timerEndScene: 30
 --- !u!114 &1059526448
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2907,6 +2907,24 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!1 &1809945915 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2715566404302941441, guid: 98eafd5c337b31b40bce234ba037321a, type: 3}
+  m_PrefabInstance: {fileID: 614529500}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &1809945917
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1809945915}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.32, y: 0.5, z: 0.29}
+  m_Center: {x: 0, y: 0.18, z: 0}
 --- !u!1 &1826817951
 GameObject:
   m_ObjectHideFlags: 0

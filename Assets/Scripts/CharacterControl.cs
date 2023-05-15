@@ -72,6 +72,7 @@ public class CharacterControl : MonoBehaviour
 
         physics();
         updateInvuln();
+        characterClamp();
     }
 
     bool isGrounded()
@@ -81,6 +82,8 @@ public class CharacterControl : MonoBehaviour
 
     void physics()
     {
+        //wall check
+
         //simulates gravity
 
         //jump
@@ -113,10 +116,18 @@ public class CharacterControl : MonoBehaviour
     void OnCollisionEnter(Collision collision)
     {
         //need to change to enemy script to get damage
-        // if(collision.GameObject.getComponenet<enemyMovement>().attackType)
+        // if(collision.GameObject.getComponenet<enemyMovement>())
         // {
-        //     health -= collision.GameObject.getComponenet<enemyMovement>().attackType;
+        //     health -= collision.GameObject.getComponenet<enemyMovement>().attackType();
         //     Debug.Log(health);
         // }
+    }
+
+    void characterClamp()
+    {
+        if(character.transform.position.y > .5)
+        {
+            character.transform.position = new Vector3(character.transform.position.x, (float).5, character.transform.position.z);;
+        }
     }
 }

@@ -1116,7 +1116,7 @@ MonoBehaviour:
   attack1: 10
   attack2: 15
   sceneIndex: 6
-  hp: 250
+  hp: 180
   winCon: {fileID: 0}
   healthBar: {fileID: 2086174731}
   attackPause: 0
@@ -1850,7 +1850,7 @@ MonoBehaviour:
   maxHealth: 100
   maxStamina: 100
   health: 100
-  damage: 15
+  damage: 30
   stamina: 50
   iFrames: 0
   swordHitBox: {fileID: 611286112}

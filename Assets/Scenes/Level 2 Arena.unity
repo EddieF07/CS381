@@ -1671,7 +1671,7 @@ MonoBehaviour:
   maxHealth: 100
   maxStamina: 100
   health: 100
-  damage: 15
+  damage: 30
   stamina: 50
   iFrames: 0
   swordHitBox: {fileID: 611286112}

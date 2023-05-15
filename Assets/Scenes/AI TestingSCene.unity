@@ -1484,7 +1484,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 451}
-  m_SizeDelta: {x: 1440, y: 400}
+  m_SizeDelta: {x: 27500, y: 400}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &953208143
 MonoBehaviour:
@@ -1519,7 +1519,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: The Ogre
+  m_Text: Ogre of Game Engines
 --- !u!222 &953208144
 CanvasRenderer:
   m_ObjectHideFlags: 0

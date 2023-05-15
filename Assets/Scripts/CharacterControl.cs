@@ -70,7 +70,7 @@ public class CharacterControl : MonoBehaviour
         if(Input.GetMouseButtonUp(0))
             canAttack = false;
 
-        physics();
+        //physics();
         updateInvuln();
         characterClamp();
     }
@@ -85,18 +85,16 @@ public class CharacterControl : MonoBehaviour
         //wall check
 
         //simulates gravity
+        // if(!isGrounded())
+        // {
+        //     characterVelocity.y -= characterAcceleration.y*Time.deltaTime;
+        // }
+        // else if(characterVelocity.y < 0)
+        // {
+        //     characterVelocity.y = 0;
+        // }
 
-        //jump
-        if(!isGrounded())
-        {
-            characterVelocity.y -= characterAcceleration.y*Time.deltaTime;
-        }
-        else if(characterVelocity.y < 0)
-        {
-            characterVelocity.y = 0;
-        }
-
-        character.transform.position += characterVelocity*Time.deltaTime;
+        // character.transform.position += characterVelocity*Time.deltaTime;
     }
 
     void updateInvuln()
@@ -128,6 +126,11 @@ public class CharacterControl : MonoBehaviour
         if(character.transform.position.y > .675)
         {
             character.transform.position = new Vector3(character.transform.position.x, (float).675, character.transform.position.z);;
+        }
+
+        if(character.transform.position.y < .65)
+        {
+            character.transform.position = new Vector3(character.transform.position.x, (float).65, character.transform.position.z);;
         }
     }
 }

@@ -7,7 +7,6 @@ public class gameControl : MonoBehaviour
 {
     public float timerEndScene = 90f;
     private float remainingTime;
-    private bool win;
 
     // Start is called before the first frame update
     void Start()
@@ -24,13 +23,20 @@ public class gameControl : MonoBehaviour
         else
         {
             remainingTime=0;
-            nextScene(5);
+            nextScene(5, false);
         }
     }
 
-    public void nextScene(int sceneIndex)
+    public void nextScene(int sceneIndex, bool win)
     {
-        GameObject.Find("ScoreManager").GetComponent<ScoreHolder>().addScore(calcScore(remainingTime, GameObject.Find("crusader").GetComponent<CharacterControl>().health, win));
+        if(GameObject.Find("crusader").GetComponent<CharacterControl>().health <= 0)
+        {
+            GameObject.Find("ScoreManager").GetComponent<ScoreHolder>().addScore(calcScore(0,0,win));
+        }
+        else
+        {
+            GameObject.Find("ScoreManager").GetComponent<ScoreHolder>().addScore(calcScore(remainingTime, GameObject.Find("crusader").GetComponent<CharacterControl>().health, win));
+        }
         print(sceneIndex);
         SceneManager.LoadScene(sceneIndex);
     }

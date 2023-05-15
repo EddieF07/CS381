@@ -81,7 +81,6 @@ public class enemyMovement : MonoBehaviour
             if(!death)
             {
                 StartCoroutine(deathAnimation());
-
             }
         }
         if(animator.canMove() && aiMovement == 1 && currentDistance < 2)
@@ -114,7 +113,7 @@ public class enemyMovement : MonoBehaviour
         death = true;
         Debug.Log("enemy death");
         yield return new WaitForSeconds(5f);
-        winCon.nextScene(6);
+        winCon.nextScene(6, true);
     }
 
     public void changeAttack()

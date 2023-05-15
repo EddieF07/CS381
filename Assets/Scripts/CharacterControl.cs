@@ -23,6 +23,7 @@ public class CharacterControl : MonoBehaviour
     //state booleans
     private bool isInvuln;
     private bool staminaRegen;
+    bool death;
 
     //state timers
     private double invulnTimer;
@@ -39,7 +40,7 @@ public class CharacterControl : MonoBehaviour
         damage = 15.0f;
         healthBar.setMax(maxHealth);
         staminaBar.setMax(maxStamina);
-        
+        death = false;
     }
 
     // Update is called once per frame
@@ -122,9 +123,20 @@ public class CharacterControl : MonoBehaviour
             health -= enemyDamage.attackType();
             if(health <= 0)
             {
-                winCon.nextScene(5);
+                if(!death)
+                {
+                    StartCoroutine(deathAnimation());
+                }
             }
         }
+    }
+
+        IEnumerator deathAnimation()
+    {
+        death = true;
+        Debug.Log("player death");
+        yield return new WaitForSeconds(5f);
+        winCon.nextScene(5, false);
     }
 
     void characterClamp()

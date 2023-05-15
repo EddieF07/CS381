@@ -38,6 +38,7 @@ public class ScoreHolder : MonoBehaviour
     public void addScore(int score)
     {
         scores[currentRound] = score;
+        currentRound++;
     }
 
 }

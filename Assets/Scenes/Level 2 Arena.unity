@@ -1183,7 +1183,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 21e28d00134667342953a6cbb548a68a, type: 3}
       propertyPath: m_Name
-      value: Warrok W Kurniawan@Zombie Scream
+      value: character
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 21e28d00134667342953a6cbb548a68a, type: 3}
       propertyPath: m_TagString
@@ -1213,7 +1213,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60aed80b531f4ee4d8f7158728ae6113, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyUnit: {fileID: 0}
+  enemyUnit: {fileID: 851291281}
 --- !u!114 &851291281
 MonoBehaviour:
   m_ObjectHideFlags: 0

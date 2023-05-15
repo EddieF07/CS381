@@ -1132,7 +1132,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60aed80b531f4ee4d8f7158728ae6113, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyUnit: {fileID: 0}
+  enemyUnit: {fileID: 614529504}
 --- !u!54 &614529510
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1241,7 +1241,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.17, y: 0.72, z: 0.24}
+  m_Size: {x: 0.29, y: 0.72, z: 0.3}
   m_Center: {x: -0.03, y: 0.39, z: 0}
 --- !u!1 &732280112
 GameObject:
@@ -1443,6 +1443,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a89a944d751380147ae49e054e68ef21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canMove: 0
   enemy: {fileID: 614529504}
   character: {fileID: 1105633064}
 --- !u!1001 &1008834205
@@ -1660,7 +1661,7 @@ MonoBehaviour:
   canAttack: 0
   maxHealth: 100
   maxStamina: 100
-  health: 100
+  health: 10
   damage: 15
   stamina: 50
   iFrames: 0

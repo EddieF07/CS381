@@ -5,7 +5,7 @@ using UnityEngine;
 public class CrusaderAnimation : MonoBehaviour
 {
     Animator animator;
-    private bool canMove;
+    public bool canMove;
     public enemyMovement enemy;
     public CharacterControl character;
     // Start is called before the first frame update
@@ -32,6 +32,15 @@ public class CrusaderAnimation : MonoBehaviour
             animator.SetBool("Striding",false);
             canMove = false;
             StartCoroutine("attackAnimation");
+        }
+        if(character.health <= 0)
+        {
+            animator.SetBool("IsDead",true);
+            animator.SetBool("IsAttacking",false);
+            animator.SetBool("WalkingF",false);
+            animator.SetBool("WalkingB",false);
+            animator.SetBool("Striding",false);
+            canMove = false;
         }
         
 
@@ -72,7 +81,7 @@ public class CrusaderAnimation : MonoBehaviour
         animator.SetBool("IsAttacking",false);  
         if(enemy.getDistance() < 2f)
         {
-            //enemy.hp -= character.damage;
+            enemy.hp -= character.damage;
             //Debug.Log(enemy.hp);
         }
     }

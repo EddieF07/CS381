@@ -74,7 +74,8 @@ public class enemyMovement : MonoBehaviour
 
         if(hp <= 0)
         {
-            winCon.nextScene(5);
+            //winCon.nextScene(5);
+
         }
         if(animator.canMove() && aiMovement == 1 && currentDistance < 2)
         {
@@ -150,7 +151,7 @@ public class enemyMovement : MonoBehaviour
             if(collision.gameObject.GetComponent<CharacterControl>().attackStatus())
             {
                 hp -= collision.gameObject.GetComponent<CharacterControl>().damage;
-                Debug.Log(hp);
+                //Debug.Log(hp);
             }
         }
     }

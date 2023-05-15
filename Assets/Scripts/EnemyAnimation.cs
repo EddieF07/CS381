@@ -16,7 +16,13 @@ public class EnemyAnimation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(enemyUnit.hp <= 0)
+        {
+            animator.SetBool("IsDead",true);
+            animator.SetBool("Walking",false);  
+            animator.SetBool("Attack1",false);  
+            animator.SetBool("Attack2",false);  
+        }
     }
 
     IEnumerator walkingPause()
@@ -55,6 +61,11 @@ public class EnemyAnimation : MonoBehaviour
         yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length-1.5f);
         animator.SetBool("Walking",true);
         animator.SetBool(attackType,false);
+    }
+
+    IEnumerator death()
+    {
+        yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
     }
 
     public string getAttackType()

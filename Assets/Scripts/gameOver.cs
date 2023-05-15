@@ -19,7 +19,7 @@ public class gameOver : MonoBehaviour
 
     void update()
     {
-        while(remainingTime > 0)
+        if(remainingTime > 0)
         {
             remainingTime -= Time.deltaTime;
             if(GameObject.Find("character").GetComponent<enemyMovement>().hp <= 0)

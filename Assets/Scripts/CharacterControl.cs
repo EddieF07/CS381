@@ -49,7 +49,7 @@ public class CharacterControl : MonoBehaviour
         stamina += 5 * Time.deltaTime;
         //weapon.transform.position = new Vector3(0,0.05549997f,0.872f);
 
-        if(!attackStatus())
+        if(!attackStatus() && crusaderAnimator.canMove)
         {
             Vector3 inputTranslate = new Vector3(0,0,0);
             if(Input.GetKey(KeyCode.W))

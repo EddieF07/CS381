@@ -9,7 +9,7 @@ public class CharacterControl : MonoBehaviour
     public bool canAttack;
     public int maxHealth = 100;
     public int maxStamina = 100;
-    public int health = 50;
+    public float health = 50;
     public float damage;
     public int stamina;
     public double iFrames;
@@ -44,7 +44,7 @@ public class CharacterControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        healthBar.updateBar(health);
+        healthBar.updateBar((int)health);
         staminaBar.updateBar(stamina);
 
         //weapon.transform.position = new Vector3(0,0.05549997f,0.872f);
@@ -108,5 +108,15 @@ public class CharacterControl : MonoBehaviour
     public bool attackStatus()
     {
         return crusaderAnimator.getAttack();
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        //need to change to enemy script to get damage
+        // if(collision.GameObject.getComponenet<enemyMovement>().attackType)
+        // {
+        //     health -= collision.GameObject.getComponenet<enemyMovement>().attackType;
+        //     Debug.Log(health);
+        // }
     }
 }

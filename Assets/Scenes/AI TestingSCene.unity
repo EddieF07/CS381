@@ -1116,7 +1116,7 @@ MonoBehaviour:
   attack1: 10
   attack2: 15
   sceneIndex: 6
-  hp: 50
+  hp: 250
   winCon: {fileID: 0}
   attackPause: 0
   target: {fileID: 1105633062}

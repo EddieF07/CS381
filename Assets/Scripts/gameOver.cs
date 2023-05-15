@@ -41,7 +41,7 @@ public class gameOver : MonoBehaviour
 
     public void saveScore(float time, float playerHP, bool winCon)
     {
-        scores[currentRound] = (int)(time*3.0f + playerHP);
+        //scores[currentRound] = (int)(time*3.0f + playerHP);
         if(winCon)
             scores[currentRound] += 100;
         currentRound++;

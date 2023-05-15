@@ -118,7 +118,7 @@ public class CharacterControl : MonoBehaviour
         {
             invulnTimer = 1;
             isInvuln = true;
-            //health -= enemyDamage.attackType();
+            health -= enemyDamage.attackType();
         }
     }
 

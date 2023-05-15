@@ -23,7 +23,7 @@ public class CrusaderAnimation : MonoBehaviour
         {
             moveAnimation();
         }
-        if(Input.GetMouseButtonDown(0) && canMove && character.stamina > 10)
+        if(Input.GetMouseButtonDown(0) && canMove && character.stamina > 10 && !animator.GetBool("IsAttacking"))
         {
             character.stamina -= 20;
             animator.SetBool("IsAttacking",true);

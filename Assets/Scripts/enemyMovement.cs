@@ -137,6 +137,7 @@ public class enemyMovement : MonoBehaviour
             self.transform.position += desiredHeading.normalized*speed*Time.deltaTime;
         }
 
+        
         self.transform.rotation =  Quaternion.LookRotation(desiredHeading.normalized);
         
 

@@ -1056,9 +1056,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -4728426434207774260, guid: 98eafd5c337b31b40bce234ba037321a, type: 3}
+      propertyPath: m_TagString
+      value: Stronger
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 98eafd5c337b31b40bce234ba037321a, type: 3}
       propertyPath: m_Name
       value: character
+      objectReference: {fileID: 0}
+    - target: {fileID: 2715566404302941441, guid: 98eafd5c337b31b40bce234ba037321a, type: 3}
+      propertyPath: m_TagString
+      value: Weaker
       objectReference: {fileID: 0}
     - target: {fileID: 5465940246521907071, guid: 98eafd5c337b31b40bce234ba037321a, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1130,6 +1138,7 @@ MonoBehaviour:
   speed: 2
   desiredSpeed: 0
   acceleration: 0
+  animator: {fileID: 614529508}
   hp: 0
   winCon: {fileID: 1059526447}
   attackPause: 0
@@ -1148,6 +1157,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.78, y: 1.78, z: 0.72}
   m_Center: {x: 0, y: 0.87, z: 0.05}
+--- !u!114 &614529508
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 614529502}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 60aed80b531f4ee4d8f7158728ae6113, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &630457836
 GameObject:
   m_ObjectHideFlags: 0

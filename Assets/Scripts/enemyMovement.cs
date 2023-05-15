@@ -23,6 +23,8 @@ public class enemyMovement : MonoBehaviour
     Vector3 heading; //degrees
     Vector3 desiredHeading; //degrees
     public float acceleration;
+    public EnemyAnimation animator;
+    private int aiMovement;
 
     public float hp;
     public gameOver winCon;
@@ -55,20 +57,35 @@ public class enemyMovement : MonoBehaviour
         entityPosition = self.transform.position;
         desiredPosition = target.transform.position;
         desiredHeading = (desiredPosition - entityPosition);
-        if(target != null && attackPause <= 0)
-        {
-            Move();
-            //Debug.DrawLine(entityPosition, entityPosition + desiredPosition * 10, Color.red, Mathf.Infinity);
-        }
-        if(desiredHeading.magnitude <=  minimumDistance)
-        {
-            attackPause = 3;
-        }
+        
+        aiMovement = Random.Range(0,3);
 
         if(hp <= 0)
         {
             winCon.nextScene(5);
         }
+        if(animator.canMove() && aiMovement == 1 && currentDistance < 2)
+        {
+            
+            animator.attack1Call();
+        }
+        else if(animator.canMove() && aiMovement == 2 && currentDistance < 3)
+        {
+            animator.attack2Call();
+        }
+        else if(animator.canMove())
+        {
+            if(target != null && attackPause <= 0)
+            {
+                Move();
+                //Debug.DrawLine(entityPosition, entityPosition + desiredPosition * 10, Color.red, Mathf.Infinity);
+            }
+            if(desiredHeading.magnitude <=  minimumDistance)
+            {
+                attackPause = 3;
+            }
+        }
+
 
     }
 
@@ -120,6 +137,18 @@ public class enemyMovement : MonoBehaviour
         {
             hp -= collision.gameObject.GetComponent<CharacterControl>().damage;
             Debug.Log(hp);
+        }
+    }
+
+    public int attackType()
+    {
+        if(animator.getAttackType() == "Attack1")
+        {
+            return 5;
+        }
+        else
+        {
+            return 10;
         }
     }
 }

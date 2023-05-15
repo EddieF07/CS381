@@ -1116,7 +1116,7 @@ MonoBehaviour:
   attack1: 10
   attack2: 15
   sceneIndex: 6
-  hp: 10
+  hp: 250
   winCon: {fileID: 0}
   healthBar: {fileID: 2086174731}
   attackPause: 0

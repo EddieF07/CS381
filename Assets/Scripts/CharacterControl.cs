@@ -8,7 +8,6 @@ public class CharacterControl : MonoBehaviour
     public enemyMovement enemyDamage;
     public Rigidbody characterRb;
     public int speed;
-    public bool canAttack;
     public int maxHealth = 100;
     public int maxStamina = 100;
     public float health = 100;
@@ -19,6 +18,7 @@ public class CharacterControl : MonoBehaviour
     public Collider swordHitBox;
     public Collider playerHurtBox;
     public CrusaderAnimation crusaderAnimator;
+    gameControl  winCon;
 
     //state booleans
     private bool isInvuln;
@@ -35,6 +35,7 @@ public class CharacterControl : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        winCon = GameObject.Find("GameControl").GetComponent<gameControl>();
         damage = 15.0f;
         healthBar.setMax(maxHealth);
         staminaBar.setMax(maxStamina);
@@ -119,6 +120,10 @@ public class CharacterControl : MonoBehaviour
             invulnTimer = 1;
             isInvuln = true;
             health -= enemyDamage.attackType();
+            if(health <= 0)
+            {
+                winCon.nextScene(5);
+            }
         }
     }
 

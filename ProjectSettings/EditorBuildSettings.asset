@@ -23,6 +23,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/GameOver.unity
     guid: deb2ad0c067694f8f9bc9917b79b6b47
+  - enabled: 1
+    path: Assets/Scenes/Level 2 Arena.unity
+    guid: 178ae9040e7602a4e97be61cee14aa71
   - enabled: 0
     path: Assets/Scenes/Demo scene.unity
     guid: 4659dc9ad5472f748a3cdcbcfcefceaa

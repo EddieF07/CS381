@@ -28,9 +28,11 @@ public class enemyMovement : MonoBehaviour
     public Rigidbody entityRigidBody;
     public int attack1;
     public int attack2;
+    public int sceneIndex;
+    bool death;
 
     public float hp;
-    public gameOver winCon;
+    public gameControl winCon;
 
     //there is a rng function that will change current attack to be between 0 to numAttacks, changeAttack()
     private int currentAttack;
@@ -48,7 +50,9 @@ public class enemyMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        winCon = GameObject.Find("GameControl").GetComponent<gameControl>();
         changeAttack();
+        death = false;
     }
 
     // Update is called once per frame
@@ -74,8 +78,11 @@ public class enemyMovement : MonoBehaviour
 
         if(hp <= 0)
         {
-            //winCon.nextScene(5);
+            if(!death)
+            {
+                StartCoroutine(deathAnimation());
 
+            }
         }
         if(animator.canMove() && aiMovement == 1 && currentDistance < 2)
         {
@@ -100,6 +107,14 @@ public class enemyMovement : MonoBehaviour
         }
 
 
+    }
+
+    IEnumerator deathAnimation()
+    {
+        death = true;
+        Debug.Log("enemy death");
+        yield return new WaitForSeconds(5f);
+        winCon.nextScene(6);
     }
 
     public void changeAttack()
@@ -151,7 +166,7 @@ public class enemyMovement : MonoBehaviour
             if(collision.gameObject.GetComponent<CharacterControl>().attackStatus())
             {
                 hp -= collision.gameObject.GetComponent<CharacterControl>().damage;
-                //Debug.Log(hp);
+                Debug.Log(hp);
             }
         }
     }

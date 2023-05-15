@@ -125,9 +125,9 @@ public class CharacterControl : MonoBehaviour
 
     void characterClamp()
     {
-        if(character.transform.position.y > .5)
+        if(character.transform.position.y > .675)
         {
-            character.transform.position = new Vector3(character.transform.position.x, (float).5, character.transform.position.z);;
+            character.transform.position = new Vector3(character.transform.position.x, (float).675, character.transform.position.z);;
         }
     }
 }

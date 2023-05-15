@@ -116,17 +116,25 @@ public class CharacterControl : MonoBehaviour
     void OnTriggerEnter(Collider collision)
     {
         //need to change to enemy script to get damage
-        if(collision.gameObject.tag == "Boss" && !isInvuln)
+        if(collision.gameObject.tag == "Boss")
         {
-            invulnTimer = 1;
-            isInvuln = true;
-            health -= enemyDamage.attackType();
-            if(health <= 0)
+
+            Animator enemyAnimator = enemyDamage.GetComponent<Animator>();
+            AnimatorClipInfo[] animatorInfo = enemyAnimator.GetCurrentAnimatorClipInfo(0);
+            string currentAnimation = animatorInfo[0].clip.name;
+            if(!isInvuln && (currentAnimation == "Attack1" || currentAnimation == "Attack2") && (enemyAnimator.GetBool("Attack1")||enemyAnimator.GetBool("Attack2")))
             {
-                if(!death)
+                if(health <= 0)
+                {
+                    death = true;
+                }
+                if(death)
                 {
                     StartCoroutine(deathAnimation());
                 }
+                invulnTimer = 1;
+                isInvuln = true;
+                health -= enemyDamage.attackType();
             }
         }
     }

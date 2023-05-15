@@ -26,6 +26,8 @@ public class enemyMovement : MonoBehaviour
     public EnemyAnimation animator;
     private int aiMovement;
     public Rigidbody entityRigidBody;
+    public int attack1;
+    public int attack2;
 
     public float hp;
     public gameOver winCon;
@@ -141,9 +143,8 @@ public class enemyMovement : MonoBehaviour
         // heading = Utils.Degrees360(heading);
     }
 
-    void OnCollisionEnter(Collision collision)
+    void OnTriggerEnter(Collider collision)
     {
-        Debug.Log(collision.gameObject.name);
         if(collision.gameObject.name == "crusader")
         {
             if(collision.gameObject.GetComponent<CharacterControl>().attackStatus())
@@ -158,11 +159,11 @@ public class enemyMovement : MonoBehaviour
     {
         if(animator.getAttackType() == "Attack1")
         {
-            return 5;
+            return attack1;
         }
         else
         {
-            return 10;
+            return attack2;
         }
     }
 }

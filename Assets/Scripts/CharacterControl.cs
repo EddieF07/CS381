@@ -5,6 +5,7 @@ using UnityEngine;
 public class CharacterControl : MonoBehaviour
 {
     public GameObject character;
+    public enemyMovement enemyDamage;
     public Rigidbody characterRb;
     public int speed;
     public bool canAttack;
@@ -110,15 +111,14 @@ public class CharacterControl : MonoBehaviour
         return crusaderAnimator.getAttack();
     }
 
-    void OnCollisionEnter(Collision collision)
+    void OnTriggerEnter(Collider collision)
     {
-        //Debug.Log(collision.gameObject.name);
         //need to change to enemy script to get damage
         if(collision.gameObject.tag == "Boss" && !isInvuln)
         {
-            invulnTimer = 2;
+            invulnTimer = 1;
             isInvuln = true;
-            health -= collision.gameObject.GetComponent<enemyMovement>().attackType();
+            //health -= enemyDamage.attackType();
         }
     }
 

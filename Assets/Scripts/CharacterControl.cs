@@ -5,7 +5,8 @@ using UnityEngine;
 public class CharacterControl : MonoBehaviour
 {
     public GameObject character;
-    private int speed = 10;
+    public Rigidbody characterRb;
+    public int speed;
     public bool canAttack;
     public int maxHealth = 100;
     public int maxStamina = 100;
@@ -14,8 +15,6 @@ public class CharacterControl : MonoBehaviour
     public int stamina;
     public double iFrames;
     private Vector3 characterVelocity;
-    public Vector3 characterAcceleration;
-    public GameObject groundedCheck;
     public Collider swordHitBox;
     public Collider playerHurtBox;
     public CrusaderAnimation crusaderAnimator;
@@ -50,18 +49,21 @@ public class CharacterControl : MonoBehaviour
         //weapon.transform.position = new Vector3(0,0.05549997f,0.872f);
         if(!attackStatus())
         {
+            Vector3 inputTranslate = new Vector3(0,0,0);
             if(Input.GetKey(KeyCode.W))
-                character.transform.position += speed * Time.deltaTime * Camera.main.transform.forward;
+                inputTranslate += speed * Camera.main.transform.forward;
             if(Input.GetKey(KeyCode.S))
-                character.transform.position += speed * Time.deltaTime * -Camera.main.transform.forward;
+                inputTranslate += speed * -Camera.main.transform.forward;
             if(Input.GetKey(KeyCode.A))
-                character.transform.position += speed * Time.deltaTime * -Camera.main.transform.right;
+                inputTranslate += speed * -Camera.main.transform.right;
             if(Input.GetKey(KeyCode.D))
-                character.transform.position += speed * Time.deltaTime * Camera.main.transform.right;
-            if(Input.GetKeyDown(KeyCode.Space) && isGrounded())
-                characterVelocity.y += characterAcceleration.y*1.5f;
+                inputTranslate += speed * Camera.main.transform.right;
+            // if(Input.GetKeyDown(KeyCode.Space) && isGrounded())
+            //     characterVelocity.y += characterAcceleration.y*1.5f;
+
+            characterRb.MovePosition(transform.position + Time.deltaTime * inputTranslate.normalized * speed);
         }
-        
+
         if(Input.GetMouseButtonDown(0))
         {
             //Play animation
@@ -74,11 +76,6 @@ public class CharacterControl : MonoBehaviour
         updateInvuln();
         characterClamp();
     }
-
-    bool isGrounded()
-    {
-        return Physics.CheckSphere(groundedCheck.transform.position, .01f);
-    } 
 
     void physics()
     {
@@ -123,14 +120,14 @@ public class CharacterControl : MonoBehaviour
 
     void characterClamp()
     {
-        if(character.transform.position.y > .675)
-        {
-            character.transform.position = new Vector3(character.transform.position.x, (float).675, character.transform.position.z);;
-        }
+        // if(character.transform.position.y > .675)
+        // {
+        //     character.transform.position = new Vector3(character.transform.position.x, (float).675, character.transform.position.z);;
+        // }
 
-        if(character.transform.position.y < .65)
-        {
-            character.transform.position = new Vector3(character.transform.position.x, (float).65, character.transform.position.z);;
-        }
+        // if(character.transform.position.y < .65)
+        // {
+        //     character.transform.position = new Vector3(character.transform.position.x, (float).65, character.transform.position.z);;
+        // }
     }
 }

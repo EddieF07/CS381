@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class cameraScript : MonoBehaviour
 {
-    public GameObject playerCamera;
+    public Rigidbody playerCamera;
     private float yaw = 0;
     private bool screenLock = false;
     // Start is called before the first frame update
@@ -20,7 +20,7 @@ public class cameraScript : MonoBehaviour
     void Update()
     {
         yaw += Input.GetAxis("Mouse X") * Time.deltaTime * 300;
-        playerCamera.transform.eulerAngles = new Vector3(0.0f,yaw,0.0f);
+        playerCamera.MoveRotation(Quaternion.Euler(new Vector3(0.0f,yaw,0.0f)));
 
         if (Input.GetKeyDown(KeyCode.Space))
         {

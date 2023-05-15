@@ -15,18 +15,23 @@ public class gameOver : MonoBehaviour
     void Start()
     {
         remainingTime = timerEndScene;
-        StartCoroutine(endScene_timer());
     }
 
-    IEnumerator endScene_timer()
+    void update()
     {
         while(remainingTime > 0)
         {
             remainingTime -= Time.deltaTime;
-            yield return null;
+            if(GameObject.Find("character").GetComponent<enemyMovement>().hp <= 0)
+            {
+                saveScore(remainingTime, GameObject.Find("character").GetComponent<CharacterControl>().health, true);
+            }
+            else if(GameObject.Find("character").GetComponent<CharacterControl>().health <= 0)
+            {
+                saveScore(0, 0, false);
+            }
         }
-
-        nextScene(5);
+        saveScore(0, GameObject.Find("character").GetComponent<CharacterControl>().health, false);
     }
 
     public void nextScene(int sceneIndex)
@@ -36,8 +41,9 @@ public class gameOver : MonoBehaviour
 
     public void saveScore(float time, float playerHP, bool winCon)
     {
-        scores[currentRound] = time*3 + playerHP;
+        scores[currentRound] = (int)(time*3.0f + playerHP);
         if(winCon)
             scores[currentRound] += 100;
+        currentRound++;
     }
 }
